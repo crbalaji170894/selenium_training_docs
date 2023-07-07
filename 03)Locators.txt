@@ -1,0 +1,18 @@
+Locators:
+=========
+** Which is used to locating webelements
+
+Types:
+=====
+1)id
+2)name
+3)className
+4)tagName
+5)cssSelector
+6)linkedText
+7)partialLinkedText
+8)xpath
+
+ID is the fastest locator to finding the webelements.
+
+=================================================================

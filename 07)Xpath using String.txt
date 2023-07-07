@@ -1,0 +1,54 @@
+07)Xpath using String
+=====================
+
+Synatax:
+========
+
+Only text presents:
+=====================
+
+tagname[text()='textvalue']
+
+Ex: //span[text()='create an account']
+===================================================================================
+
+Contains method in Xpath
+=======================
+//tagName[contains(text(),'partialText')]
+//span[contains(text(),'create')]
+
+=====================================================================================
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class StringXpath {
+
+	public static void main(String[] args) {
+
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://www.google.com/");
+
+		// Locating by the String Xpath
+
+//		driver.get("https://www.facebook.com/");
+//
+//		driver.findElement(By.xpath("//a[text()='Forgotten password?']")).click();
+
+		//driver.close();
+
+		// Locating by the String Xpath using contains
+
+		driver.get("https://www.facebook.com/");
+
+		driver.findElement(By.xpath("//a[contains(text(),'Forgotten')]")).click();
+
+	}
+
+}
+
+

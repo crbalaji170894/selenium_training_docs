@@ -1,0 +1,28 @@
+05) Linked Text and Partial Linked Text
+=======================================
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LinkedTextAndPartialLinkedText {
+	
+	
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://www.google.com/");
+		
+		//Finding WebElement using Linked Text and Partial Linked Text
+		
+		
+		driver.findElement(By.linkText("Gmail")).click();
+		
+		driver.findElement(By.partialLinkText("Gm")).click();
+		
+	}
+
+}

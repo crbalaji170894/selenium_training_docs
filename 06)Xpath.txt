@@ -1,0 +1,56 @@
+06)Xpath
+========
+1) Id , name , class is not present in under webelements 
+2) then we can go for Xpath
+3) using Xpath we can validate out webelement is correct or not
+4)Validate the locators
+
+Types:
+=====
+1) /=>Absolute Xpath -cant use mostly
+2) //=>Relative Xpath- We use majorly
+
+Syntax:
+=======
+//tagName [@attribute = 'attributeValue']
+
+Ex: //input [ @id = 'email']
+    //input [@name ='pass']
+(//input [ @id = 'email'])[1]-Index
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Xpath {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://www.google.com/");
+
+		// Locating by the xpath locator
+
+		driver.get("https://www.facebook.com/");
+
+		// I need to find the web element of user name and password of FB login page
+		// using xpath locator
+
+		// Right click Inspect
+
+		WebElement username = driver.findElement(By.xpath("(//input[@id='email'])[1]"));
+		username.sendKeys("test@email.com");
+
+		WebElement password = driver.findElement(By.xpath("(//input[@id='pass'])[1]"));
+		password.sendKeys("test@123A");
+
+	}
+
+}
+
+
+

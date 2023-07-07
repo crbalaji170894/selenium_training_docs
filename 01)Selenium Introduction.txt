@@ -1,0 +1,38 @@
+Selenium Components:
+====================
+Selenium IDE, Selenium RC are Outdated
+
+Selenium WebDriver
+
+Selenium Grid
+
+============================================================
+
+Installation using JAR:
+======================
+
+1) Download Selennium Jar file v3.141.59
+2)Config th jar file in Eclipse
+       i) Create lib folder and paste the jar file
+       ii)RighClick Jar file-> BuildPath -> Add toBuildPath
+3)Download Web Drivers
+       i) create the driver folder
+       ii)paste the drivers to the driver folder
+
+
+i)Firefox-geckoDriver.exe
+ii)chrome-ChromeDriver.exe
+iii)IE-IEDriverServer.exe
+
+=================================================================
+
+Installation using Maven:
+======================
+
+1) Setup Maven in your system
+2)Create Maven Project
+3)Copy and Paste the latest Selenium version into pom
+
+i)Firefox-geckoDriver.exe
+ii)chrome-ChromeDriver.exe
+iii)IE-IEDriverServer.exe

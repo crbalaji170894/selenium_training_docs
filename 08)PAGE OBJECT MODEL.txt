@@ -1,0 +1,153 @@
+08)PAGE OBJECT MODEL
+====================
+1)Page Object Model (POM) is a design pattern, popularly used in test automation that creates Object Repository for web UI elements
+
+2)It reduces code duplication and improves test maintenance.
+
+3)Each web page in the application, there should be a corresponding Page Class.
+
+Store the WebElement in one place which used to reuse it where ever we want also called as Object repository
+
+What is Page Factory in Selenium?
+==================================
+
+Page Factory in Selenium is an inbuilt Page Object Model framework concept for Selenium WebDriver but it is very optimized.
+
+It is used for initialization of Page objects or to instantiate the Page object itself.  
+
+It is also used to initialize Page class elements without using “FindElement/s.”
+
+Annotations used:
+=================
+@FindBy->It is also used to initialize Page class elements without using “FindElement/s.”
+@FindBys
+@FindAll
+@CacheLoop
+================================================================================
+@FindBys : When the required WebElement objects need to match all of the given criteria use @FindBys annotation
+
+@FindAll : When required WebElement objects need to match at least one of the given criteria use @FindAll annotation
+================================================================================================================
+package pages;
+
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.PageFactory;
+
+public class FBLoginPage {
+
+	WebDriver driver;
+
+	@FindBy(name = "email")
+
+	private WebElement username;
+
+	@FindBy(name = "pass")
+
+	private WebElement password;
+
+	@FindBys({ @FindBy(id = "test"), @FindBy(name = "email") })
+
+	private WebElement textuserFindBy;
+
+	@FindAll({ @FindBy(id = "email123"), @FindBy(name = "email") }) // OR condition
+
+	private WebElement textuserFindAll;
+
+	// create public Constructor
+
+	public FBLoginPage(WebDriver driver) {
+
+		this.driver = driver;
+
+		// This initElements method will create all WebElements
+
+		PageFactory.initElements(driver, this);
+
+	}
+
+	public WebElement getUsername() {
+		return username;
+	}
+
+	public void setUsername(WebElement username) {
+		this.username = username;
+	}
+
+	public WebElement getPassword() {
+		return password;
+	}
+
+	public void setPassword(WebElement password) {
+		this.password = password;
+	}
+
+	public WebElement getTextuserFindBy() {
+		return textuserFindBy;
+	}
+
+	public void setTextuserFindBy(WebElement textuserFindBy) {
+		this.textuserFindBy = textuserFindBy;
+	}
+
+	public WebElement getTextuserFindAll() {
+		return textuserFindAll;
+	}
+
+	public void setTextuserFindAll(WebElement textuserFindAll) {
+		this.textuserFindAll = textuserFindAll;
+	}
+
+}
+====================================================================
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import pages.FBLoginPage;
+
+public class TestFBLoginPagePOM {
+
+	public static void main(String[] args) {
+
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://www.google.com/");
+
+		// Locating by the locator
+
+		driver.get("https://www.facebook.com/");
+
+		// Create Object for FB Login Page
+
+		FBLoginPage obj = new FBLoginPage(driver);
+
+//		obj.getUsername().sendKeys("test");
+//
+//		obj.getPassword().sendKeys("test");
+		
+		//test FindBys.
+		//List<WebElement> textuserFindBy = obj.getTextuserFindBy();
+		
+		obj.getTextuserFindBy().sendKeys("test");
+
+		//test Find All
+		
+		//obj.getTextuserFindAll().sendKeys("test");
+		
+		
+		
+	}
+
+}
+
