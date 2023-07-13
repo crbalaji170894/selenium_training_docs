@@ -1,0 +1,143 @@
+14)JAVA Script Executor:
+========================
+
+Why do we need JavaScriptExecutor?
+In Selenium Webdriver, locators like XPath, CSS, etc. are used to identify and perform operations on a web page.
+
+In case, these locators do not work you can use JavaScriptExecutor. You can use JavaScriptExecutor to perform an desired operation on a web element.
+
+Selenium supports javaScriptExecutor. There is no need for an extra plugin or add-on. You just need to import (org.openqa.selenium.JavascriptExecutor) in the script as to use JavaScriptExecutor.
+
+JavaScriptExecutor -is an Interface
+
+
+
+Method:
+=====
+executeScript()
+click()
+getAttribute()
+
+Major Usage: ScrollUp and ScrollDown
+=====================================
+
+TypeCasting
+============
+Two Interface cant directly interact with each other
+
+So Do Typecasting one interface to another interface
+
+Here WebDriver is an One Interface and JavaScriptExecutor is also one interface
+
+Import the package.
+===================
+
+import org.openqa.selenium.JavascriptExecutor;
+
+Synatax
+=========
+JavascriptExecutor js = (JavascriptExecutor) driver;  
+js.executeScript(Script,Arguments);
+=======================================================================================================================================================
+1) Example: Click a button to login using JavaScriptExecutor.
+2)Example: Scroll Down using JavaScriptExecutor.
+3)Example:Inserting Value using JavaScriptExecutor
+====================================================
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class JavaScriptExecutor {
+
+	public void click() throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://mail.rediff.com/cgi-bin/login.cgi?%3CAuthentication");
+
+		driver.manage().window().maximize();
+
+		WebElement submit = driver.findElement(By.xpath("//input[@name='proceed']"));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		js.executeScript("arguments[0].click();", submit);
+
+		Thread.sleep(10000);
+
+	}
+
+	public void scrollUpAndScrollDown() throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("http://moneyboats.com/");
+
+		driver.manage().window().maximize();
+
+		WebElement element0 = driver.findElement(By.xpath("//h3[text()='Archive']"));
+
+		WebElement element1 = driver.findElement(By.xpath("(//span[text()='Home'])[2]"));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		Thread.sleep(10000);
+
+		js.executeScript("arguments[0].scrollIntoView(true);", element0, element1);// scrollDowm
+
+		Thread.sleep(5000);
+
+		js.executeScript("arguments[1].scrollIntoView(false);", element0, element1);// scrollUp
+	}
+
+	public void insertValue() throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://www.facebook.com/");
+
+		WebElement username = driver.findElement(By.name("email"));
+
+		WebElement password = driver.findElement(By.name("pass"));
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		Thread.sleep(10000);
+
+		js.executeScript("arguments[0].setAttribute('value','test@gamil.com');", username, password);
+
+		js.executeScript("arguments[1].setAttribute('value','test@123A');", username, password);
+
+		// getAtrribute - get the value what we provided
+
+		String username1 = (String) js.executeScript("return arguments[0].getAttribute('value');", username, password);
+
+		String pwd1 = (String) js.executeScript("return arguments[1].getAttribute('value');", username, password);
+
+		System.out.println(username1);
+
+		System.out.println(pwd1);
+	}
+
+	public static void main(String[] args) throws InterruptedException {
+
+		JavaScriptExecutor obj = new JavaScriptExecutor();
+		// obj.click();
+		// obj.scrollUpAndScrollDown();
+		obj.insertValue();
+	}
+
+}
+
+
+
+

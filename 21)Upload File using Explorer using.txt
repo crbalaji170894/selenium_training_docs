@@ -1,0 +1,60 @@
+21)Upload File using Explorer using Robot Class
+==================================================
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class UploadFileUsingRobotClass {
+
+	public static void main(String[] args) throws AWTException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://easyupload.io/");
+
+		driver.manage().window().maximize();
+
+		// open upload window
+		WebElement uploadFile = driver.findElement(By.xpath("//button[@type='button']"));
+
+		uploadFile.click();
+
+		// put path to your image in a clipboard
+
+		StringSelection filePath = new StringSelection(
+				"C:\\Users\\Kisho\\OneDrive\\Documents\\JAVA\\SeleniumTraining\\selenium full material (1).pdf");
+
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(filePath, null);
+
+		// imitate mouse events like ENTER, CTRL+C, CTRL+V
+		Robot robot = new Robot();
+		robot.delay(250);
+
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.delay(90);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+
+	
+
+	}
+
+}

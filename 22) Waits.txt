@@ -1,0 +1,61 @@
+22) Waits:
+==========
+3 types of Waits are There
+1)Explicit Wait
+2)Implicit Wait
+3)Fluent Wait
+=======================================
+
+1)Implicit Wait
+================
+** Applicable for all webelements
+
+driver.manage().timeouts().implicitlyWait(500,TimeUnit.SECONDS);
+
+2) Explicit Wait
+=================
+** It is applicable for Particular very specific loactors.
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class ExplicitWait {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://www.facebook.com/");
+
+		//Thread.sleep(10000);
+
+		WebElement buttonElement = driver.findElement(By.xpath("//button[@name='login']"));
+
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+
+		WebElement button = wait.until(ExpectedConditions.elementToBeClickable(buttonElement));
+
+		System.out.println("Wait Completed for 5 Seconds");
+		
+		button.click();
+
+	}
+
+}
+
+
+
+Fluent Wait
+=============
+We want to change the time interval
+ 
+This is also applicable to specific loactors.
+
+

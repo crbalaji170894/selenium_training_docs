@@ -1,0 +1,71 @@
+17)Frames
+==========
+ 
+DOM Synatax
+============
+<iFrame id = "1001" name= "frame1"/>
+
+
+driver.switchTo().frame(String id);
+
+driver.switchTo().frame(String name);
+
+driver.switchTo().frame(WebElement element1);
+
+driver.switchTo().frame(int index);
+
+
+Note: Before finding the Locator need to ensure WebPage has Frames or not
+
+If Frames are there need to switch it Frame with above methods
+
+=====================================================================
+List<WebElements> totalFramesList = driver.findElement(By.tagName("iframe"));
+
+totalFramesList.size();-to get the Size of th List in order to get number of Frames present inthat webpage.
+
+so Ex.driver.switchTo.fram(1);
+
+driver-WebDriver Interface
+switchto()->targerLoactorInterface
+
+This is Kind of MethodOverLoading
+
+=======================================================
+driver.switchTo().defaultContent()->Defaul WebPage (Come back to normal page)
+driver.switchTo().parentFrame()->Come back Once to behind frame
+=========================================================================
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FramesClass {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://demo.guru99.com/test/guru99home/");
+
+		driver.manage().window().maximize();
+
+		List<WebElement> iframesList = driver.findElements(By.tagName("iframe"));
+
+		System.out.println(iframesList.size());
+
+		WebDriver frame = driver.switchTo().frame(3);
+
+		WebDriver parentFrame = driver.switchTo().parentFrame();
+
+		WebDriver defaultContent = driver.switchTo().defaultContent();
+
+		driver.close();
+
+	}
+
+}

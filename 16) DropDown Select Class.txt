@@ -1,0 +1,135 @@
+16) DropDown Select Class
+==========================
+
+Class-> Select
+
+DropDown HTML:->https://demoqa.com/select-menu
+===============
+
+<select id="oldSelectMenu">
+<option value="red">Red</option>
+<option value="1">Blue</option>
+<option value="2">Green</option>
+<option value="3">Yellow</option>
+<option value="4">Purple</option>
+<option value="5">Black</option>
+<option value="6">White</option>
+<option value="7">Voilet</option>
+<option value="8">Indigo</option>
+<option value="9">Magenta</option>
+<option value="10">Aqua</option>
+</select>
+
+Methods Available in Select Class:
+==================================
+1)selectbyIndex()
+2)selectByValue()
+3)selectByVisibleText()
+4)getOptions()
+5)getAllSelectedOptions()
+6)getFirstSelectedOption()
+7)isMultiple()
+8)deSelectByIndex()
+9)deSelectByValue()
+10)deSelectAll()
+
+isMultiple( ) command is used to verify whether the specified select element support selecting multiple options at the same time. isMultiple( ) returns true when the specified select element support selecting multiple options else it will return false.
+==================================================
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class DropDownClass {
+
+	public void dropDownExamplOne() {
+
+		// select By Index
+
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://demoqa.com/select-menu");
+
+		driver.manage().window().maximize();
+
+		WebElement dropDownOne = driver.findElement(By.xpath("//select[@id='oldSelectMenu']"));
+
+		WebElement dropDownTwo = driver.findElement(By.xpath("//select[@id='cars']"));
+
+		Select selectOne = new Select(dropDownOne);
+
+		// selectByIndex
+
+		selectOne.selectByIndex(3);
+
+		String text = selectOne.getFirstSelectedOption().getText();
+
+	//	selectOne.deselectByValue(text);
+
+		// selectByValue
+
+//		selectOne.selectByValue("Black");
+//
+//		selectOne.deselectAll();
+
+		// Print All Options
+
+		List<WebElement> options = selectOne.getOptions();
+
+		for (WebElement option : options) {
+//			option.getText();
+			
+			selectOne.selectByVisibleText(option.getText());
+			System.out.println(option.getText());
+		}
+
+		Select selectTwo = new Select(dropDownTwo);
+
+		// Select All Options
+
+		List<WebElement> optionsAll = selectTwo.getOptions();
+
+		for (WebElement optionEach : optionsAll) {
+
+			selectTwo.selectByVisibleText(optionEach.getText());
+		}
+	}
+
+	public void isMultiple() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://demoqa.com/select-menu");
+
+		driver.manage().window().maximize();
+
+		WebElement dropDownOne = driver.findElement(By.xpath("//select[@id='oldSelectMenu']"));
+
+		WebElement dropDownTwo = driver.findElement(By.xpath("//select[@id='cars']"));
+
+		Select selectOne = new Select(dropDownOne);
+		
+		boolean multiple = selectOne.isMultiple();
+		
+		System.out.println(multiple);
+
+
+	}
+	public static void main(String[] args) {
+
+		DropDownClass obj = new DropDownClass();
+		//obj.dropDownExamplOne();
+		obj.isMultiple();
+
+	}
+}
+

@@ -1,0 +1,58 @@
+18)WindowsHandling
+==================
+To Handle Multiple Windows in One WebPage
+
+driver.switchTo().window(String URL)
+driver.switchTo().window(String title)
+driver.switchTo().window(String WindowId)-Mostly Used
+
+Mehtods:
+=======
+1) getWindowId()->Get Parent Window Id
+2) getWindowHandles()->Get All WindowID
+
+Note: Windows Handling is Value based not Index based Able store WindowId in SET.(Due unique values in each Window)
+
+Normal or Parent Window Switch-> driver.switchTo().defaultContet();
+===================================================================================================================
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WindowsHandling {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://practice.geeksforgeeks.org/courses/devops-live?utm_source=geeksforgeeks&utm_medium=newui_home&utm_campaign=courses");
+
+		driver.manage().window().maximize();
+
+		driver.manage().deleteAllCookies();
+
+		String parentWindowId = driver.getWindowHandle();
+
+		System.out.println("Parent Window Id is :" + parentWindowId);
+
+		Set<String> allWindowId = driver.getWindowHandles();
+
+		System.out.println(allWindowId.size());
+
+		for (String eachWindowId : allWindowId) {
+			if (!parentWindowId.equals(eachWindowId)) {
+				driver.switchTo().window(eachWindowId);
+				System.out.println(eachWindowId);
+			}
+		}
+
+		driver.switchTo().defaultContent();
+
+	}
+
+}
