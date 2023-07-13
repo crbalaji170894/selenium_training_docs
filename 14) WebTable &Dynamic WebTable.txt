@@ -1,0 +1,78 @@
+14) WebTable &Dynamic WebTable
+================================
+
+Real Time there were no static Webtable from all webpages.
+
+We need to write code as much generic to handle out Dynamic WebTables
+
+
+<table>
+<tr>
+<tr> id </td>
+<td> name </td>
+<td> email </td>
+</tr>
+</table>
+======================================================
+tr -Table Row
+td -Table Data
+th-Table Heading
+
+=======================================================
+Static tables: Data is static i.e. Number of rows and columns are fixed.
+Dynamic tables: Data is dynamic i.e. Number of rows and columns are NOT fixed.
+
+=================================================================================
+
+1) Do perform only //table -To check How many tables are there in particular Web Page
+	(//table)[1]->Check based on Index or no of table which we need
+
+tagName("//tr")
+tagName(//table//tr)s
+=============================================================================
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WebTable {
+	
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://qavbox.github.io/demo/webtable/");			
+        
+		driver.manage().window().maximize();
+		
+		List<WebElement> tableRowsWebelements = driver.findElements(By.xpath("//table[@id='table01']"));
+		
+		System.out.println(tableRowsWebelements.size());
+		
+		for(WebElement eachTableRowWebElement:tableRowsWebelements)
+		{
+			List<WebElement> tableDataWebElementsForEachRow = eachTableRowWebElement.findElements(By.tagName("td"));
+			
+			for(WebElement eachTableDataWebelement:tableDataWebElementsForEachRow)
+			{
+				String tableText =eachTableDataWebelement.getText();
+				
+				System.out.println(tableText);
+				
+				if (tableText.equals(""))
+						{
+					eachTableDataWebelement.click();
+						}
+			}
+			
+		}
+	}
+
+}
+
