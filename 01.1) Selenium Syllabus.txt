@@ -24,6 +24,8 @@ Creation of Maven Project and How to add dependecies
 17)Waits
 18)Upload file From explorer
 19)Selenium Grid-Overview
+20)Xpath
+21)CssSelector
 ==================================
-20)POM-Cover by initail days of Selenium
-21)Base Class creation and How to Reuse it over a project will expain inital days of the Selenium Class
+22)POM-Cover by initail days of Selenium
+23)Base Class creation and How to Reuse it over a project will expain inital days of the Selenium Class

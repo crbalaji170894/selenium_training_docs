@@ -1,0 +1,74 @@
+12)RobotClass
+============
+
+Used to access Virtual Keys 
+
+java.awt.Robot;
+java.awt.Exception;
+
+Mehtods
+=======
+keyPress()
+keyRelease()
+
+KeyEvent Class
+==============
+VK_DOWN
+VK_ENTER
+
+Above are Static Variables
+
+VK-Virtual Keys
+===========================================================================
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class RobotClass {
+
+	public static void main(String[] args) throws AWTException, InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://www.gmail.com");
+
+		driver.manage().window().maximize();
+
+		driver.findElement(By.xpath("//input[@id='identifierId']")).sendKeys("crbalaji17@gmail.com");
+
+		Thread.sleep(10000);
+
+		Robot robot = new Robot();
+
+		robot.keyPress(KeyEvent.VK_TAB);
+
+		robot.keyRelease(KeyEvent.VK_TAB);
+
+		Thread.sleep(10000);
+
+		robot.keyPress(KeyEvent.VK_ENTER);
+
+		robot.keyRelease(KeyEvent.VK_ENTER);
+
+		Thread.sleep(10000);
+
+		robot.keyRelease(KeyEvent.VK_TAB);
+
+		robot.keyRelease(KeyEvent.VK_TAB);
+
+		Thread.sleep(10000);
+
+		robot.keyPress(KeyEvent.VK_ENTER);
+
+		robot.keyRelease(KeyEvent.VK_ENTER);
+
+	}
+
+}
