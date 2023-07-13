@@ -1,0 +1,59 @@
+13)Alerts
+=========
+Which is Target Locator Interface
+
+driver.switchTo.alert();
+
+TargetLoactor is an interface.
+
+Types:
+=====
+1) Simple Alert  -OK
+2) Confirm Alert -Ok,Cancel
+3) Prompt Alert  -Enter some text and give OK or cancel
+
+Methods:
+=======
+accept()->Ok
+dismiss()->cancel
+
+
+=============================
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AlertClass {
+	
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://mail.rediff.com/cgi-bin/login.cgi?%3CAuthentication");			
+        
+		driver.manage().window().maximize();	
+		
+		WebElement submit = driver.findElement(By.xpath("//input[@name='proceed']"));
+		
+		submit.click();//Click Submit button without Entering  Customer ID
+		
+		Thread.sleep(10000);
+		
+		Alert alert = driver.switchTo().alert();
+		
+		System.out.println(alert.getText());
+
+		alert.accept();
+		
+		
+
+	}
+
+}
+
+
