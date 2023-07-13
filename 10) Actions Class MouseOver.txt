@@ -1,0 +1,56 @@
+10) Actions Class MouseOver
+==============================
+Keyboard Events
+Mouse Events
+
+Method:
+======
+moveToElement()
+contextClick()
+doubleClick
+dragAndDrop()
+perform()
+
+============
+Synatax:
+=======
+Actions acc =new Actions(driver);
+
+1) Move To Element-acc.moveToElement(webElement).perform();
+2) RightClick-> acc.contextClick(webElement).perform();
+3) doubleclick->acc.doubleClick(WebElement).perform();
+4)dragAndDrop->acc.dragAndDrop(sourceWebElement,destinationWeElement).perform();
+========================================================================================================
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class ActionClass {
+	
+	
+	public static void main(String[] args) {
+		
+		WebDriver driver;
+
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		driver = new ChromeDriver();
+
+		driver.get("https://www.google.com/");
+		
+		driver.get("https://www.facebook.com/");
+		
+		WebElement element = driver.findElement(By.xpath("//a[text()='Messenger']"));
+		
+		Actions acc = new Actions(driver);
+		
+		//acc.moveToElement(element).perform();
+		
+		acc.moveToElement(element).click().perform();
+	}
+
+}
+============================================================================================================================================================

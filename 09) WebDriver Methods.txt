@@ -1,0 +1,72 @@
+09) WebDriver Methods:
+======================
+get()
+getCurrentUrl();
+getTitle()
+findElements()
+findElement()
+getPageSource()
+close()
+quit()
+windowHandle()
+WindoHandles()
+
+============================================
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class WebDriverMethods {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		WebDriver driver;
+
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		driver = new ChromeDriver();
+
+		driver.get("https://www.google.com/");
+
+		String currentURL = driver.getCurrentUrl();
+
+		System.out.println("The Current URL is:" + currentURL);
+
+		String getTitle = driver.getTitle();
+
+		System.out.println("the title is:" + getTitle);
+
+		String pageSource = driver.getPageSource();
+
+		// System.out.println("The Page Source is :" + pageSource);
+
+		driver.manage().window().fullscreen();
+
+		Thread.sleep(10000);
+
+		driver.manage().window().minimize();
+
+		Thread.sleep(10000);
+
+		driver.manage().window().maximize();
+
+		Thread.sleep(10000);
+
+		driver.get("https://www.facebook.com/");
+
+		Thread.sleep(10000);
+
+		driver.navigate().back();
+
+		Thread.sleep(10000);
+
+		driver.navigate().forward();
+
+		Thread.sleep(10000);
+
+	}
+
+}
+
+

@@ -1,0 +1,150 @@
+Base Class Creation
+================
+BAse class:
+=============
+
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class BaseClass {
+
+	// Action Class Methods
+
+	WebDriver driver;
+
+	public WebDriver setup() {
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		driver = new ChromeDriver();
+
+		return driver;
+
+	}
+
+	public void moveToElement(WebElement webElement) {
+
+		Actions acc = new Actions(driver);
+		acc.moveToElement(webElement).click().perform();
+
+	}
+
+	public WebDriver getURL(String url) {
+		driver.get(url);
+		return driver;
+
+	}
+
+	
+
+}
+============================================
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import pages.BaseClass;
+import pages.FBLoginPage;
+
+public class ActionClass extends BaseClass {
+	WebDriver driver;
+
+	BaseClass baseclass = new BaseClass();
+
+	public WebDriver returnDriver() {
+
+		System.setProperty("webdriver.chrome.driver",
+				"C:\\Users\\Kisho\\Downloads\\chromedriver_win32\\chromedriver.exe");
+
+		driver = new ChromeDriver();
+
+		return driver;
+
+	}
+
+	public void movetoElement() {
+		returnDriver();
+
+		driver.get("https://www.google.com/");
+
+		driver.get("https://www.facebook.com/");
+
+		WebElement element = driver.findElement(By.xpath("//a[text()='Messenger']"));
+
+		Actions acc = new Actions(driver);
+
+		// acc.moveToElement(element).perform();
+
+		acc.moveToElement(element).click().perform();
+
+	}
+
+	public void rightClick() {
+		returnDriver();
+
+		driver.get("https://www.google.com/");
+
+		driver.get("https://www.facebook.com/");
+
+		WebElement righClickelement = driver.findElement(By.xpath("//a[text()='Forgotten password?']"));
+
+		Actions acc = new Actions(driver);
+
+		acc.contextClick(righClickelement).perform();
+
+	}
+
+	public void dragAndDrop() {
+		returnDriver();
+
+		driver.get("https://demoqa.com/droppable/");
+
+		driver.manage().window().maximize();
+
+		WebElement sourceElement = driver.findElement(By.xpath("//div[text()='Drag me']"));
+
+		WebElement destinationElement = driver.findElement(By.xpath("//div[text()='Drop here']"));
+
+		Actions acc = new Actions(driver);
+
+		acc.dragAndDrop(sourceElement, destinationElement).perform();
+
+	}
+
+	public void accessWithBaseClass() {
+
+//		baseclass.setup();
+//		WebDriver driverAfterURLLoad = baseclass.getURL("https://www.facebook.com/");
+//		WebElement element = driverAfterURLLoad.findElement(By.xpath("//a[text()='Messenger']"));
+//		baseclass.moveToElement(element);
+
+		baseclass.setup();
+		WebDriver driverAfterURLLoad = baseclass.getURL("https://www.facebook.com/");
+
+		// WebElement element =
+		// driverAfterURLLoad.findElement(By.xpath("//a[text()='Messenger']"));
+
+		FBLoginPage loginpage = new FBLoginPage(driverAfterURLLoad);
+
+		WebElement element = loginpage.getforgotpwd();
+
+		baseclass.moveToElement(element);
+
+	}
+
+	public static void main(String[] args) {
+
+		ActionClass obj = new ActionClass();
+		// obj.movetoElement();
+		// obj.rightClick();
+		// obj.dragAndDrop();
+		obj.accessWithBaseClass();
+
+	}
+}

@@ -1,0 +1,29 @@
+01.1) Selenium Syllabus
+=======================
+
+Creation of Maven Project and How to add dependecies
+=====================================================
+1) Introduction
+2) Instantian of Browsers(chrome, Firfox,IE)
+3) Locators(Types)
+4) Finding Webelment using Locators
+5) Driver Methods-Practical
+=====================================
+6)Action Class-Mouser Over Actions,Keyboard Actions
+      -> Right Click, Double Click,Drag and Drop, MovetoElement
+7) Robot Class-Keyboard Actions(Virtual Keyboard)
+8) Alerts
+     i) simple alert ii)Confirm alert iii)Prompt alert
+9)WebTable,Dynamic WebTable
+10)JAVAScriptExecutor(Scrollup and Scroll down)
+11)DropDown-SelectClass
+12)Frames
+14)WindowsHandling
+15)ScreenShot
+16)BrokenLinks
+17)Waits
+18)Upload file From explorer
+19)Selenium Grid-Overview
+==================================
+20)POM-Cover by initail days of Selenium
+21)Base Class creation and How to Reuse it over a project will expain inital days of the Selenium Class
